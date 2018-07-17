@@ -1,0 +1,8 @@
+---
+# handlers file for openvpn
+   - name: openvpn_start
+     service: 
+      name: openvpn@{{openvpn_service_namedefault}}
+      state: started
+      enabled: yes
+

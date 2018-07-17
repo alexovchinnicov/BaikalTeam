@@ -1,0 +1,2 @@
+[all]
+LXC ansible_ssh_host=10.0.0.169  ansible_ssh_port=22 ansible_ssh_user=root ansible_password=12345678 ansible_sudo_pass=12345678 

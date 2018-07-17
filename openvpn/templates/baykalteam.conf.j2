@@ -1,0 +1,69 @@
+client
+nobind
+dev {{openvpn_dev}}
+key-direction 1
+remote-cert-tls server
+
+remote {{ openvpn_server }} {{ openvpn_server_port }} {{ openvpn_server_proto}}
+
+user {{ openvpn_user }}
+group {{ openvpn_group }}
+persist-key
+persist-tun
+
+<key>
+{{ openvpn_client_key.stdout }}
+</key>
+<cert>
+{{ openvpn_client_cert.stdout }}
+</cert>
+<ca>
+-----BEGIN CERTIFICATE-----
+MIIDNTCCAh2gAwIBAgIJAMDWGcPiHbnCMA0GCSqGSIb3DQEBCwUAMBYxFDASBgNV
+BAMMC0Vhc3ktUlNBIENBMB4XDTE3MDEwMzIxMTgzMVoXDTI3MDEwMTIxMTgzMVow
+FjEUMBIGA1UEAwwLRWFzeS1SU0EgQ0EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw
+ggEKAoIBAQDCTrcHXkKt2U+y1BqNlnx1Ccrcj5agdqszlyE1vkNfoGxLSH4Q5fFk
+M7EYYP2l9RY1seWcJ6L/8aLJVRD/Z8rIlcMRgCAdMwNmiKSLLpNHv8yjhPhSt0si
+To4B/rpPKRmxczS1ZuKaU+V4i2ctx8dhrd/4JzfnJqkGCYEjPS3I4vl+8tMjoQkF
+Y3rAE5V+xA0TTZf2byE8iHYb3Dwhs+OlBrP59EY73CkEe6QCGgahVJ59vbs+FWZB
+LB7WHKWEPee9TFsMrDpI1N1PkaEOVmmFuWnWU9xBa281ULlDIh8aPadxnmzjmIXG
+JlTDlJJfbWwgRBAjO16dpkHUDS8t9Pr/AgMBAAGjgYUwgYIwHQYDVR0OBBYEFBs2
+2SVPbYQ5JKI8QtKt2d2GvlSiMEYGA1UdIwQ/MD2AFBs22SVPbYQ5JKI8QtKt2d2G
+vlSioRqkGDAWMRQwEgYDVQQDDAtFYXN5LVJTQSBDQYIJAMDWGcPiHbnCMAwGA1Ud
+EwQFMAMBAf8wCwYDVR0PBAQDAgEGMA0GCSqGSIb3DQEBCwUAA4IBAQA56+u+tMM/
+crZjv6ogzXawKEypoU4aLfl9XjEBbRIfuBDeo5A2xMQiAauQWArYKb/GaiBwDDCa
+W4wrhj1aMKxILL+Ppto0XsIKQ30S8e1OBJa7xJHIYzrFn1HngyTTlr207zMhYERr
+HYszQ4N3aVLObKb0w9aKGK3xfCMPBzAXjCcmTE1ErU6XENTnx5UNaK9l6yvxnUbx
+irFVsTTd0Eu+q8A3x3LGr/ggFZ3xRTmqbNf3mY66b2yeCQ1LBtV0jtrTZFY4IDmJ
+Y4Rk7MWkTonR/Y1PaIdmi2NeaJZCEuBS585ywcEeV6b0ODaHCEB2vwewpXdipXZ2
+UVF4I3AaI/l+
+-----END CERTIFICATE-----
+</ca>
+<tls-auth>
+#
+# 2048 bit OpenVPN static key
+#
+-----BEGIN OpenVPN Static key V1-----
+fb3f3f232aaa6ed4e5ec864d2712c3c0
+7f72d2e8b14e9141404058e3b73b158c
+e860d99583160e9cf96dbe59dbbd5db8
+efeca3d86557f0bce72c34a219a74eb1
+c7d227898899c3dd1fba9cf04ebf8a09
+15b75617a567551344f7ef5ba5596a4f
+00b8bc1d47cee245513911d6e5831d58
+c9ed9c28b79f2bb24e4eefc566157071
+f3cb1f234a551c3bb71193f6f651631a
+1a11b014a490384325ac8728a58bd544
+6c11c259b1241fe9ffb835b02800c02e
+b44079df3174a589e2b8b43946015f01
+0ddc8ff67c3ad98fb1b58582378cd174
+8609b58e8719343bf45ab7530c1991a0
+02665a537229763eb4bfa25620af4eee
+4b36a131e09eb5e7d7a013d7ffd365f0
+-----END OpenVPN Static key V1-----
+</tls-auth>
+key-direction 1
+
+auth-nocache
+comp-lzo
+reneg-sec 259200

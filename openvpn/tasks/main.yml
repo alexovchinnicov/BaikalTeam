@@ -1,0 +1,72 @@
+---
+# tasks file for openvpn
+
+
+   - name: Add startup group for OpenVPN service
+     group: 
+      name: '{{openvpn_group}}'
+      state: present
+
+   - name: Add startup user for OpenVPN service
+     user: 
+      name: '{{ openvpn_user }}'
+      group: '{{ openvpn_group }}'
+      state: present
+      createhome: no
+
+   - name: Install list of packages
+     apt: 
+      name: '{{item}}' 
+      state: installed 
+      update_cache: yes
+     with_items:
+       - openvpn
+       - traceroute
+
+   - name: Quirks for client key
+     copy: 
+      src: 'files/{{ inventory_hostname }}.key'
+      dest: /tmp
+      mode: 0644
+
+   - name: Get client key for OpenVPN config
+     command: 'cat /tmp/{{ inventory_hostname|quote }}.key'
+     register: openvpn_client_key
+
+   - name: Drop quirks for clent key
+     file: 
+      path: '/tmp/{{ inventory_hostname }}.key'
+      state: absent
+
+   - name: Quirks for client cert
+     copy: 
+      src: 'files/{{ inventory_hostname }}.cert'
+      dest: /tmp
+      mode: 0644
+
+   - name: Get client cert for OpenVPN config
+     command: 'cat /tmp/{{ inventory_hostname|quote }}.cert'
+     args:
+      stdin: yes
+     register: openvpn_client_cert
+
+
+   - name: Drop quirks for clent cert
+     file: 
+      path: '/tmp/{{ inventory_hostname }}.cert'
+      state: absent
+
+
+
+
+   - name: Create OpenVPN config
+     template:
+       src: "{{ openvpn_service_namedefault }}.conf.j2"
+       dest: "/etc/openvpn/{{ openvpn_service_namedefault }}.conf"
+       owner: "{{ openvpn_user }}"
+       group: "{{ openvpn_group }}"
+       mode: 0644
+       backup: yes
+     notify: openvpn_start
+
+
