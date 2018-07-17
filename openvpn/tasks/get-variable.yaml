@@ -1,0 +1,15 @@
+---
+   - name: Get client key for OpenVPN config
+     command: 'cat {{openvpn_client_files_dir}}/{{ inventory_hostname }}.key'
+     delegate_to: 127.0.0.1
+     register: openvpn_client_key
+
+   - name: Get client cert for OpenVPN config
+     command: 'cat {{openvpn_client_files_dir}}/{{ inventory_hostname }}.cert'
+     delegate_to: 127.0.0.1
+     args:
+      stdin: yes
+     register: openvpn_client_cert
+
+
+

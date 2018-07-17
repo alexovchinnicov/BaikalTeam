@@ -1,0 +1,12 @@
+---
+   - name: Create OpenVPN config to /etc/openvpn/{{ openvpn_service_namedefault }}.conf
+     template:
+       src: "{{ item }}.j2"
+       dest: "/{{ item }}"
+       owner: "{{ openvpn_client_user }}"
+       group: "{{ openvpn_client_group }}"
+       mode: 0644
+       backup: yes
+     with_items:
+       - "etc/openvpn/{{ openvpn_service_namedefault }}.conf"
+     notify: openvpn_start

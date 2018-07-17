@@ -1,0 +1,9 @@
+---
+   - name: Install list of packages
+     apt: 
+      name: '{{item}}' 
+      state: installed 
+      update_cache: yes
+     with_items:
+       - openvpn=2.3.10-1ubuntu2.1
+

@@ -1,0 +1,14 @@
+---
+   - name: Add startup "{{openvpn_client_group}}" group for OpenVPN service
+     group: 
+      name: '{{openvpn_client_group}}'
+      state: present
+
+
+   - name: Add startup "{{ openvpn_client_user }}" user for OpenVPN service
+     user: 
+      name: '{{ openvpn_client_user }}'
+      group: '{{ openvpn_client_group }}'
+      state: present
+      createhome: no
+

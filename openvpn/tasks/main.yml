@@ -1,0 +1,18 @@
+---
+# tasks file for openvpn
+
+   - name: Get user variable
+     include_tasks: get-variable.yaml
+     tags: [get_variable]
+
+   - name: Create user & group
+     include_tasks: pre-install.yaml
+     tags: [create_user_and__group]
+
+   - name: Install packages
+     include_tasks: install.yaml
+     tags: [install_packages]
+
+   - name: Configure 
+     include_tasks: config.yaml
+     tags: [create_config]

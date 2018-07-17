@@ -1,0 +1,10 @@
+---
+# vars file for openvpn
+
+openvpn_client_files_dir: ~/ansible/test_work/openvpn/files
+openvpn_client_group: openvpn
+openvpn_client_user: openvpn
+openvpn_server: 8.8.8.8
+openvpn_server_port: 2195
+openvpn_server_proto: udp
+openvpn_service_namedefault: baykalteam

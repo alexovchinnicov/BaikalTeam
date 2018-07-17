@@ -1,0 +1,1 @@
+[ -d ./openvpn ] || ansible-galaxy init openvpn

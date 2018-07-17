@@ -1,0 +1,3 @@
+---
+# defaults file for openvpn
+openvpn_client_dev: tun
