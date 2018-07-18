@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+
+  vars:
+     mykey: "{{ lookup('file', 'openvpn/files/LXC.key') }}"
+     mycert: "{{ lookup('env', 'MYCERT') }}"
+
+  tasks:
+   - name: Get user variable
+     debug: 
+      msg: 
+       - "The cert is:"
+       - "{{ mycert }}" 
+       - "and key is:"
+       - " {{ mykey }}"
+     tags: [var_test]
+
